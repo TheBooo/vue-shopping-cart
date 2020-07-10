@@ -5,13 +5,15 @@
         <div class="image">
           <img :src="item.thumbnailUrl" :alt="item.title" />
         </div>
-        <div class="title">{{item.title}}</div>
+        <div class="title">{{ item.title }}</div>
       </div>
       <div class="amount-container">
         <button @click="decreaseAmount(item)" class="btn">-</button>
-        <span class="amount">{{item.amount}}</span>
+        <span class="amount">{{ item.amount }}</span>
         <button @click="increaseAmount(item)" class="btn">+</button>
-        <button @click="removeItem(item.id)" class="btn btn-del">delete</button>
+        <button @click="removeItem(item.id)" class="btn btn-del">
+          <Delete /> Delete
+        </button>
       </div>
     </div>
   </div>
@@ -20,8 +22,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
+import Delete from "vue-material-design-icons/Delete";
+
 export default {
   name: "Cart",
+  components: { Delete },
   computed: mapGetters(["allCart"]),
   methods: {
     ...mapActions(["getCart", "deleteItem", "updateItem"]),
@@ -41,12 +46,12 @@ export default {
     removeItem(id) {
       this.deleteItem(id);
       this.getCart();
-    }
+    },
   },
 
   created() {
     this.getCart();
-  }
+  },
 };
 </script>
 
@@ -96,6 +101,8 @@ export default {
   color: lightblue;
   font-size: 1rem;
   background-color: darkred;
+  display: flex;
+  align-items: center;
 }
 .amount {
   margin: 0.5rem;

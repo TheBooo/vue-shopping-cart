@@ -3,8 +3,8 @@
     <router-link to="/">Home</router-link>
     <router-link to="/cart">
       <div class="cart">
-        Cart
-        <span class="counter">{{counter}}</span>
+        <Cart />
+        <span class="counter">{{ counter }}</span>
       </div>
     </router-link>
   </div>
@@ -13,27 +13,30 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
+import Cart from "vue-material-design-icons/Cart";
+
 export default {
   name: "Navbar",
+  components: { Cart },
   computed: {
     ...mapGetters(["allCart"]),
     counter: function() {
       let count = 0;
-      this.allCart.map(item => {
+      this.allCart.map((item) => {
         count += item.amount;
       });
       return count;
-    }
+    },
   },
   data() {
     return {};
   },
   methods: {
-    ...mapActions(["getCart"])
+    ...mapActions(["getCart"]),
   },
   created() {
     this.getCart();
-  }
+  },
 };
 </script>
 
