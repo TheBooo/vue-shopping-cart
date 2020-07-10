@@ -14,7 +14,7 @@ const actions = {
     commit("setCart", cartData);
   },
 
-  addCartItem({ commit }, item) {
+  addItem({ commit }, item) {
     //old items
     const cart = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))

@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link>
-    <router-link to="/about">
+    <router-link to="/cart">
       <div class="cart">
         Cart
         <span class="counter">{{counter}}</span>

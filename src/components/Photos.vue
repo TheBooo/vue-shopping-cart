@@ -20,10 +20,11 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(["fetchPhotos", "addCartItem"]),
+    ...mapActions(["fetchPhotos", "addItem"]),
+
     addToCart(photo) {
       const newPhoto = { ...photo, amount: 1 };
-      this.addCartItem(newPhoto);
+      this.addItem(newPhoto);
       alert(`${photo.title} added to the cart`);
     }
   },
@@ -54,7 +55,9 @@ button:hover {
   grid-row-gap: 2rem;
 }
 .photo-container {
-  border: 1px solid lightblue;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(120, 120, 120, 0.3);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(120, 120, 120, 0.3);
+  box-shadow: 0px 0px 5px 2px rgba(120, 120, 120, 0.3);
   display: flex;
   flex-direction: column;
   align-items: stretch;
