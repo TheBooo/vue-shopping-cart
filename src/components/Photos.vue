@@ -4,7 +4,7 @@
       <div class="image-container">
         <img :src="photo.url" :alt="photo.title" class="image" />
       </div>
-      <div class="title">{{photo.title.slice(0, 20)}}</div>
+      <div class="title">{{photo.title.slice(0, 20)}}...</div>
       <button @click="addToCart(photo)">Add to cart</button>
     </div>
   </main>
