@@ -15,18 +15,20 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Navbar",
-  computed: mapGetters(["allCart"]),
+  computed: {
+    ...mapGetters(["allCart"]),
+    counter: function() {
+      return this.allCart.length;
+    }
+  },
   data() {
-    return {
-      counter: 0
-    };
+    return {};
   },
   methods: {
     ...mapActions(["getCart"])
   },
   created() {
     this.getCart();
-    this.counter = this.allCart.length;
   }
 };
 </script>
