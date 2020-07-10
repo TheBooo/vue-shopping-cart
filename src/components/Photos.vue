@@ -5,7 +5,7 @@
         <img :src="photo.url" :alt="photo.title" class="image" />
       </div>
       <div class="title">{{photo.title.slice(0, 20)}}...</div>
-      <button @click="addToCart(photo)">Add to cart</button>
+      <button @click="addToCart(photo)" :disabled="isDisabled(photo.id)">Add to cart</button>
     </div>
   </main>
 </template>
@@ -15,21 +15,34 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Photos",
-  computed: mapGetters(["allPhotos"]),
+  computed: mapGetters(["allPhotos", "allCart"]),
   data() {
     return {};
   },
   methods: {
-    ...mapActions(["fetchPhotos", "addItem"]),
+    ...mapActions(["fetchPhotos", "getCart", "addItem"]),
 
     addToCart(photo) {
-      const newPhoto = { ...photo, amount: 1 };
-      this.addItem(newPhoto);
-      alert(`${photo.title} added to the cart`);
+      if (this.allCart.filter(item => item.id === photo.id).length > 0) {
+        alert("already in cart");
+      } else {
+        const newPhoto = { ...photo, amount: 1, inCart: true };
+        this.addItem(newPhoto);
+        alert(`${photo.title} added to the cart`);
+      }
+    },
+
+    isDisabled(id) {
+      if (this.allCart.filter(item => item.id === id).length > 0) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   created() {
     this.fetchPhotos();
+    this.getCart();
   }
 };
 </script>
