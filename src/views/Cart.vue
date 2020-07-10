@@ -92,6 +92,7 @@ export default {
   background-color: lightblue;
   border: none;
   cursor: pointer;
+  transition: all 0.2s linear;
 }
 .btn:hover {
   background-color: lightgreen;
@@ -103,6 +104,9 @@ export default {
   background-color: darkred;
   display: flex;
   align-items: center;
+}
+.btn-del:hover {
+  color: black;
 }
 .amount {
   margin: 0.5rem;

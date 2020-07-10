@@ -4,8 +4,10 @@
       <div class="image-container">
         <img :src="photo.url" :alt="photo.title" class="image" />
       </div>
-      <div class="title">{{photo.title.slice(0, 20)}}...</div>
-      <button @click="addToCart(photo)" :disabled="isDisabled(photo.id)">Add to cart</button>
+      <div class="title">{{ photo.title.slice(0, 20) }}...</div>
+      <button @click="addToCart(photo)" :disabled="isDisabled(photo.id)">
+        Add to cart
+      </button>
     </div>
   </main>
 </template>
@@ -28,17 +30,17 @@ export default {
     },
 
     isDisabled(id) {
-      if (this.allCart.filter(item => item.id === id).length > 0) {
+      if (this.allCart.filter((item) => item.id === id).length > 0) {
         return true;
       } else {
         return false;
       }
-    }
+    },
   },
   created() {
     this.fetchPhotos();
     this.getCart();
-  }
+  },
 };
 </script>
 
@@ -48,11 +50,14 @@ button {
   background-color: lightblue;
   border: none;
   cursor: pointer;
+  transition: all 0.2s linear;
 }
 button:hover {
   background-color: #42b983;
 }
-
+button:disabled {
+  background-color: lightgrey;
+}
 .photos-container {
   width: 90vw;
   margin: 1rem auto;
