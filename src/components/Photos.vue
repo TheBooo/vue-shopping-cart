@@ -22,8 +22,8 @@ export default {
   methods: {
     ...mapActions(["fetchPhotos", "addCartItem"]),
     addToCart(photo) {
-      console.log(photo);
-      this.addCartItem(photo);
+      const newPhoto = { ...photo, amount: 1 };
+      this.addCartItem(newPhoto);
       alert(`${photo.title} added to the cart`);
     }
   },
