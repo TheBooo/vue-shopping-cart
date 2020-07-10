@@ -18,7 +18,11 @@ export default {
   computed: {
     ...mapGetters(["allCart"]),
     counter: function() {
-      return this.allCart.length;
+      let count = 0;
+      this.allCart.map(item => {
+        count += item.amount;
+      });
+      return count;
     }
   },
   data() {

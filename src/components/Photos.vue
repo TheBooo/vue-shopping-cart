@@ -23,13 +23,8 @@ export default {
     ...mapActions(["fetchPhotos", "getCart", "addItem"]),
 
     addToCart(photo) {
-      if (this.allCart.filter(item => item.id === photo.id).length > 0) {
-        alert("already in cart");
-      } else {
-        const newPhoto = { ...photo, amount: 1, inCart: true };
-        this.addItem(newPhoto);
-        alert(`${photo.title} added to the cart`);
-      }
+      const newPhoto = { ...photo, amount: 1, inCart: true };
+      this.addItem(newPhoto);
     },
 
     isDisabled(id) {
