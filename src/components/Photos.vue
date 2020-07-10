@@ -5,7 +5,7 @@
         <img :src="photo.url" :alt="photo.title" class="image" />
       </div>
       <div class="title">{{photo.title.slice(0, 20)}}</div>
-      <button>Add to cart</button>
+      <button @click="addToCart(photo)">Add to cart</button>
     </div>
   </main>
 </template>
@@ -20,7 +20,12 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(["fetchPhotos"])
+    ...mapActions(["fetchPhotos", "addCartItem"]),
+    addToCart(photo) {
+      console.log(photo);
+      this.addCartItem(photo);
+      alert(`${photo.title} added to the cart`);
+    }
   },
   created() {
     this.fetchPhotos();
